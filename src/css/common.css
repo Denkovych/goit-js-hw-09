@@ -16,3 +16,12 @@ img {
   display: block;
   max-width: 100%;
 }
+
+.form{
+  display: flex;
+  align-items: flex-end;
+}
+label{
+  display: inline-grid;
+  margin-right: 10px;
+}
