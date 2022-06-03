@@ -1,7 +1,3 @@
-.form{
- display: grid;
- align-items: flex-end;   
-}
 label{
-    display: grid;
+    display: inline-grid;
 }
