@@ -1,0 +1,1 @@
+{"version":3,"sources":["03promises.css"],"names":[],"mappings":"AAAA,MAEC,oBACD,CACA,YAHC,YAKD","file":"03promises.c19f0fb0.css","sourceRoot":"../src","sourcesContent":[".form{\n display: grid;\n align-items: flex-end;   \n}\nlabel{\n    display: grid;\n}"]}
