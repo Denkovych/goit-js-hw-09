@@ -8,53 +8,47 @@ const refs = {
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 
-let selected ={};
-
 refs.start.disabled = true;
+
 const options = {
-  
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
     console.log(selectedDates[0]);
-    
-const dateNow = Date.now();
 
-    if(selectedDates[0].getTime() <= dateNow){
-      //const selectedDate = selectedDates[0].getTime();
+const dateNow = Date.now();
+  if(selectedDates[0].getTime() <= dateNow){
       refs.start.disabled = true;
-      return window.alert("Please choose a date in the future")} 
-    else{
-        refs.start.disabled = false;
-        
-        }
-        
-       
- refs.start.addEventListener('click', timer(selectedDates[0]));
-}}
+      return window.alert("Please choose a date in the future")}
+
+  else { refs.start.disabled = false;
+      localStorage.setItem('selectDate', selectedDates[0].getTime() )}
+  }
+};
+
+
+refs.start.addEventListener('click', timer);
 
 flatpickr('#datetime-picker', options);
 
 
-function timer(e){
+function timer(){
+  const userDATE = localStorage.getItem('selectDate');
 
-
- 
-
-
-   setInterval(()=>{
-    const currentTime = Date.now();
-    const selectDate = e.getTime();
-    const result = selectDate  - currentTime;
-    const convertResult = convertMs(result);
+setInterval(()=>{
+  const currentTime = Date.now();
+  const result = userDATE  - currentTime;
+  const convertResult = convertMs(result);
     
-    refs.days.textContent = convertResult.days;
-    refs.hours.textContent = convertResult.hours;
-    refs.minutes.textContent = convertResult.minutes;
-    refs.seconds.textContent = convertResult.seconds;  
-  }, 1000)
+  refs.days.textContent = convertResult.days;
+  refs.hours.textContent = convertResult.hours;
+  refs.minutes.textContent = convertResult.minutes;
+  refs.seconds.textContent = convertResult.seconds;}, 1000)
+  
+localStorage.removeItem('selectDate')
+  
 }
 
 function pad(value){
