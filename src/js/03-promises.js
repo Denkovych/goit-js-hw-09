@@ -11,25 +11,25 @@ e.preventDefault();
   let stepDelay = Number(STEP.value);
   let firstDelay = Number(DELAY.value);
   
-  
+  let c = 0;
   let x = 0;
+  let step = firstDelay+stepDelay*c;
 setInterval(() => {
-     
+      
   if(x === amount){
   return }
-
-   createPromise(x+=1, firstDelay+=stepDelay)
+  let step = firstDelay+stepDelay*c;
+   createPromise(x+=1, step)
     .then(({ position, delay }) => {
-      
       console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
-      
     })
     .catch(({ position, delay }) => {
-    console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+      console.log(`❌ Rejected promise ${position} in ${delay}ms`);
     });
 
+    c+=1;
     
-    }, firstDelay + stepDelay);
+    }, step);
 })
 
 
