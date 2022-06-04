@@ -11,15 +11,15 @@ e.preventDefault();
   let stepDelay = Number(STEP.value);
   let firstDelay = Number(DELAY.value);
   
-  let c = 0;
-  let x = 0;
-  let step = firstDelay+stepDelay*c;
+ 
+  let i = 0;
+  
 setInterval(() => {
       
-  if(x === amount){
+  if(i === amount){
   return }
-  let step = firstDelay+stepDelay*c;
-   createPromise(x+=1, step)
+  let step = firstDelay+stepDelay*i;
+   createPromise(i+=1, step)
     .then(({ position, delay }) => {
       Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
     })
@@ -27,9 +27,9 @@ setInterval(() => {
       Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
     });
 
-    c+=1;
     
-    }, step);
+    
+    }, 0);
 })
 
 
@@ -38,13 +38,15 @@ function createPromise(position, delay) {
   
 return new Promise ((Fulfilled, Rejected )=>
     {const shouldResolve = Math.random() > 0.3;
-  
+  setTimeout(()=>{
     if (shouldResolve) {
       Fulfilled ({position, delay});
      
     } else {
     Rejected ({position, delay});
-  } })
+  }
+  },delay)
+     })
 }
 
 
