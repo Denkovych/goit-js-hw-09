@@ -1,3 +1,4 @@
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 const refs = {
   days: document.querySelector('[data-days]'),
   hours: document.querySelector('[data-hours]'),
@@ -21,7 +22,7 @@ const options = {
 const dateNow = Date.now();
   if(selectedDates[0].getTime() <= dateNow){
       refs.start.disabled = true;
-      return window.alert("Please choose a date in the future")}
+      return Notify.failure("Please choose a date in the future")}
 
   else { refs.start.disabled = false;
       localStorage.setItem('selectDate', selectedDates[0].getTime() )}
