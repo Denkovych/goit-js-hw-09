@@ -38,15 +38,19 @@ flatpickr('#datetime-picker', options);
 
 function timer(){
   const userDATE = localStorage.getItem('selectDate');
-
-setInterval(()=>{
+  
+  
+  
+  const intervalId = setInterval(()=>{
+   
   const currentTime = Date.now();
   const result = userDATE  - currentTime;
   const convertResult = convertMs(result);
- if(result === 0){
-   return
- }  
   
+  console.log(convertResult)
+  if(result === 0){
+    return
+  } 
   refs.days.textContent = convertResult.days;
   refs.hours.textContent = convertResult.hours;
   refs.minutes.textContent = convertResult.minutes;
