@@ -26,11 +26,12 @@ const dateNow = Date.now();
 
   else { refs.start.disabled = false;
       localStorage.setItem('selectDate', selectedDates[0].getTime() )}
+      refs.start.addEventListener('click', timer);
   }
 };
 
 
-refs.start.addEventListener('click', timer);
+
 
 flatpickr('#datetime-picker', options);
 
@@ -42,7 +43,10 @@ setInterval(()=>{
   const currentTime = Date.now();
   const result = userDATE  - currentTime;
   const convertResult = convertMs(result);
-    
+ if(result === 0){
+   return
+ }  
+  
   refs.days.textContent = convertResult.days;
   refs.hours.textContent = convertResult.hours;
   refs.minutes.textContent = convertResult.minutes;
