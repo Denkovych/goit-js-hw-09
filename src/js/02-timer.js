@@ -40,17 +40,16 @@ function timer(){
   const userDATE = localStorage.getItem('selectDate');
   
   
-  
+  let result = 1;
   const intervalId = setInterval(()=>{
-   
   const currentTime = Date.now();
-  const result = userDATE  - currentTime;
-  const convertResult = convertMs(result);
-  
-  console.log(convertResult)
-  if(result === 0){
+  let result = userDATE  - currentTime;
+  if(result < 0){
+    clearInterval(intervalId)
     return
-  } 
+  }
+  const convertResult = convertMs(result);
+ 
   refs.days.textContent = convertResult.days;
   refs.hours.textContent = convertResult.hours;
   refs.minutes.textContent = convertResult.minutes;
@@ -59,7 +58,6 @@ function timer(){
 localStorage.removeItem('selectDate')
   
 }
-
 function pad(value){
   return String(value).padStart(2, '0');
 }
